@@ -1,5 +1,6 @@
 import re
 from board_scheme import BoardScheme
+from crossword_problem import CrosswordsProblem
 
 
 def board_size():
@@ -64,5 +65,6 @@ def run():
     print(board)
 
     domain = get_domain()
+    problem = CrosswordsProblem(board, domain)
 
     return
