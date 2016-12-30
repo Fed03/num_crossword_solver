@@ -87,4 +87,5 @@ def run():
     problem = CrosswordsProblem(board, domain)
 
     constraints = get_constraints(board)
+    problem.set_constraints(constraints)
     return
