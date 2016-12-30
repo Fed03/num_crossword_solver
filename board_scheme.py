@@ -16,7 +16,7 @@ VERTICAL_DIRECTION = {
 
 
 class BoardScheme:
-    def __init__(self, cols, rows, blocks):
+    def __init__(self, rows, cols, blocks):
         self.cols = cols
         self.rows = rows
         self.blocks = blocks
@@ -67,7 +67,7 @@ class BoardScheme:
         return words
 
     def __str__(self):
-        mapping = {cell: index + 1 for (index, cell) in enumerate(self._definition_indexes)}
+        mapping = {cell: index for (index, cell) in enumerate(self._definition_indexes, start=1)}
         mapping.update({cell: '#' for cell in self.blocks})
 
         data = []

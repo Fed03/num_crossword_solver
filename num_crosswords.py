@@ -2,16 +2,6 @@ import re
 from board_scheme import BoardScheme
 
 
-# board = BoardScheme(rows=5, cols=7, blocks=[
-#     (1, 3),
-#     (2, 5), (2, 7),
-#     (3, 3), (3, 4),
-#     (4, 2), (4, 6),
-#     (5, 1), (5, 7)
-# ])
-#
-
-
 def board_size():
     question = 'Board dimension, specified as `rows, cols`\n'
     size = input('%s' % question)
@@ -69,7 +59,8 @@ def run():
     rows, cols = board_size()
     blocks = board_blocks(rows, cols)
 
-    board = BoardScheme(cols, rows, blocks)
+    board = BoardScheme(rows, cols, blocks)
+    print('Here the board just created\n')
     print(board)
 
     domain = get_domain()
