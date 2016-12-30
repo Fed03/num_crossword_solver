@@ -26,6 +26,22 @@ class BoardScheme:
 
         self.intersections = self._generate_intersections()
 
+    def horizontal_words(self):
+        definitions = {}
+        for i, cell in enumerate(self._definition_indexes, 1):
+            if cell in self._horizontal_words:
+                definitions[str(i) + 'h'] = self._horizontal_words[cell]
+
+        return definitions
+
+    def vertical_words(self):
+        definitions = {}
+        for i, cell in enumerate(self._definition_indexes, 1):
+            if cell in self._vertical_words:
+                definitions[str(i) + 'v'] = self._vertical_words[cell]
+
+        return definitions
+
     def _generate_definition_indexes(self):
         first_letters = list(set(self._horizontal_words.keys()).union(self._vertical_words))
         first_letters.sort(key=lambda x: x[1])  # sort on secondary key

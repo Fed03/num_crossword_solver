@@ -54,6 +54,25 @@ def __get_domain__():
     return list(map(int, domain.split('-')))
 
 
+def _collect_definitions(words):
+    definitions = {}
+    for index, word in words.items():
+        definitions[index] = int(input('{} ({} cells long): '.format(index[:-1], len(word))))
+    return definitions
+
+
+def get_constraints(board):
+    h_word = board.horizontal_words()
+    v_word = board.vertical_words()
+
+    print('HORIZONTAL')
+    definitions = _collect_definitions(h_word)
+    print('VERTICAL')
+    definitions.update(_collect_definitions(v_word))
+
+    return definitions
+
+
 def run():
     print('Numeric Crosswords Solver\n')
 
@@ -67,4 +86,5 @@ def run():
     domain = get_domain()
     problem = CrosswordsProblem(board, domain)
 
+    constraints = get_constraints(board)
     return
