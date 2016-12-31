@@ -3,7 +3,7 @@ import re
 
 def board_size():
     question = 'Board dimension, specified as `rows, cols`\n'
-    size = input('%s' % question)
+    size = input(question)
     while not re.fullmatch('\d+,\s?\d+', size):
         print('Incorrect format, retry')
         size = input(question)
@@ -11,14 +11,14 @@ def board_size():
 
 
 def board_blocks(row_limit, col_limit):
-    question = 'List of blocks, one block at time, specified as `row_index, col_index`.'
     stop_word = 'stop'
-    print(question, 'If done write `%s`' % stop_word)
+    print('\nList of blocks, one block at time, specified as `row_index, col_index`.')
+    print('If done write `{}`'.format(stop_word))
 
     blocks = []
 
     block = input()
-    while str(block).lower() != ('%s' % stop_word):
+    while str(block).lower() != stop_word:
         if re.fullmatch('\d+,\s?\d+', block):
             block = tuple(map(int, re.split(',\s?', block)))
             if not (1 <= block[0] <= row_limit and 1 <= block[1] <= col_limit):
@@ -43,8 +43,8 @@ def get_domain():
 
 
 def _get_domain():
-    question = 'Insert the variables domain, specified as `r-s`\n'
-    domain = input('%s' % question)
+    question = '\nInsert the variables domain, specified as `r-s`\n'
+    domain = input(question)
     while not re.fullmatch('\d+-\d+', domain):
         print('Incorrect format, retry')
         domain = input(question)
@@ -63,9 +63,10 @@ def get_constraints(board):
     h_word = board.horizontal_words()
     v_word = board.vertical_words()
 
-    print('HORIZONTAL')
+    print('Insert definitions')
+    print('\nHORIZONTAL\n')
     definitions = _collect_definitions(h_word)
-    print('VERTICAL')
+    print('\nVERTICAL\n')
     definitions.update(_collect_definitions(v_word))
 
     return definitions

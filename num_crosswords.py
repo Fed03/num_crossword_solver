@@ -10,7 +10,7 @@ def run():
     blocks = board_blocks(rows, cols)
 
     board = BoardScheme(rows, cols, blocks)
-    print('Here the board just created\n')
+    print('\nHere the board just created\n')
     print(board)
 
     domain = get_domain()
