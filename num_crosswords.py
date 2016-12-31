@@ -18,4 +18,10 @@ def run():
 
     constraints = get_constraints(board)
     problem.set_constraints(constraints)
+
+    if problem.solve():
+        pass
+    else:
+        print('The problem has no solution')
+
     return

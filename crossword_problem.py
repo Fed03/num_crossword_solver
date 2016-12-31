@@ -6,6 +6,13 @@ class CrosswordsProblem:
         self._board = board
         self._vars = NJ.Matrix(board.rows, board.cols, domain[0], domain[1])
         self._model = self._build_model()
+        self.has_solution = None
+
+    def solve(self):
+        solver = self._model.load('Mistral')
+        self.has_solution = solver.solve()
+
+        return self.has_solution
 
     def set_constraints(self, constraints):
         words = self._board.horizontal_words()
