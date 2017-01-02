@@ -1,0 +1,22 @@
+{
+  "board": {
+    "rows": 3,
+    "cols": 4,
+    "blocks": [
+      [1,2], [2,2], [3,3]
+    ]
+  },
+  "domains": [2,5],
+  "definitions": {
+    "horizontal": {
+      "2h": 7,
+      "4h": 7,
+      "5h": 9
+    },
+    "vertical": {
+      "1h": 10,
+      "2h": 8,
+      "3h": 10
+    }
+  }
+}
