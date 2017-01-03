@@ -1,3 +1,4 @@
+import argparse
 from board_scheme import BoardScheme
 from crossword_problem import CrosswordsProblem
 from params_fetcher import *
@@ -25,3 +26,6 @@ def run():
         print('The problem has no solution')
 
     return
+
+parser = argparse.ArgumentParser(description='Numeric Crosswords Solver')
+parser.add_argument('-cw', '--cwfile', help='A json file containing the problem definition', metavar="JSON_FILE")
