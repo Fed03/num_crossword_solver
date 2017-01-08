@@ -13,14 +13,21 @@ def problem_decoder(obj):
 
 def run(args):
     if args.cwfile:
-        problem_desc = json.load(open(args.cwfile), object_hook=problem_decoder)
+        problem, board, problem_desc = load_problem(args.cwfile)
 
-        board = BoardScheme(**problem_desc['board'])
-        problem = CrosswordsProblem(board, problem_desc['domains'])
+        print('Numeric Crosswords Solver\n')
+        print('The problem consists of:')
+        print('- Scheme')
+        print(board)
+        print('- Domains [{},{}]'.format(*problem_desc['domains']))
+        print('- Definitions')
+        print_definitions(problem_desc['definitions'])
 
-        constraints = problem_desc['definitions']['horizontal'].copy()
-        constraints.update(problem_desc['definitions']['vertical'])
-        problem.set_constraints(constraints)
+        if problem.solve():
+            print('\nSolved as')
+            print(problem)
+        else:
+            print('\nThe issued problem has no solution')
 
     else:
         print('Numeric Crosswords Solver\n')
@@ -39,11 +46,33 @@ def run(args):
         problem.set_constraints(constraints)
 
         if problem.solve():
-            pass
+            print('\nSolved as')
+            print(problem)
         else:
-            print('The problem has no solution')
+            print('\nThe issued problem has no solution')
 
     return
+
+
+def print_definitions(definitions, indentation_lvl=2):
+    for direction in ['horizontal', 'vertical']:
+        print('{}{}'.format(' ' * indentation_lvl, direction))
+        for key, value in definitions[direction].items():
+            print('{}{}: {}'.format(' ' * (indentation_lvl + 1), key[:-1], value))
+
+
+def load_problem(file):
+    problem_desc = json.load(open(file), object_hook=problem_decoder)
+
+    board = BoardScheme(**problem_desc['board'])
+    problem = CrosswordsProblem(board, problem_desc['domains'])
+
+    constraints = problem_desc['definitions']['horizontal'].copy()
+    constraints.update(problem_desc['definitions']['vertical'])
+    problem.set_constraints(constraints)
+
+    return problem, board, problem_desc
+
 
 parser = argparse.ArgumentParser(description='Numeric Crosswords Solver')
 parser.add_argument('-cw', '--cwfile', help='A json file containing the problem definition', metavar="JSON_FILE")
