@@ -15,7 +15,7 @@ VERTICAL_DIRECTION = {
 }
 
 
-class BoardScheme:
+class Scheme:
     def __init__(self, rows, cols, blocks):
         self.cols = cols
         self.rows = rows
