@@ -1,4 +1,5 @@
 import Numberjack as NJ
+from terminaltables import SingleTable
 
 
 class CrosswordsProblem:
@@ -21,5 +22,18 @@ class CrosswordsProblem:
         for key, value in constraints.items():
             self._model.add(NJ.Sum([self._vars[row - 1][col - 1] for (row, col) in words[key]]) == value)
 
-    # def _build_model(self):
-    #     return NJ.Model()
+    def __str__(self):
+        data = []
+        for row_index, row in enumerate(self._vars):
+            row_data = []
+            for col_index, variable in enumerate(row):
+                if (row_index + 1, col_index + 1) in self._board.blocks:
+                    row_data.append('#')
+                else:
+                    row_data.append(variable.get_value())
+
+            data.append(row_data)
+
+        board = SingleTable(data)
+        board.inner_row_border = True
+        return board.table
