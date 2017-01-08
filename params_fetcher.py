@@ -63,10 +63,10 @@ def get_constraints(board):
     h_word = board.horizontal_words()
     v_word = board.vertical_words()
 
-    print('Insert definitions')
-    print('\nHORIZONTAL\n')
+    print('\nInsert definitions')
+    print('HORIZONTAL')
     definitions = _collect_definitions(h_word)
-    print('\nVERTICAL\n')
+    print('VERTICAL')
     definitions.update(_collect_definitions(v_word))
 
     return definitions
