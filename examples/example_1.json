@@ -6,7 +6,7 @@
       [1,2], [2,2], [3,3]
     ]
   },
-  "domains": [2,5],
+  "domain": [2,5],
   "definitions": {
     "horizontal": {
       "2h": 7,

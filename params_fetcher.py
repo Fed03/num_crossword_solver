@@ -2,7 +2,7 @@ import re
 
 
 def board_size():
-    question = 'Board dimension, specified as `rows, cols`\n'
+    question = 'Board size, specified as `rows, cols`\n'
     size = input(question)
     while not re.fullmatch('\d+,\s?\d+', size):
         print('Incorrect format, retry')
@@ -36,7 +36,7 @@ def board_blocks(row_limit, col_limit):
 def get_domain():
     domain = _get_domain()
     if not 0 < domain[0] < domain[1]:
-        print('Lower bound must me greater than 0')
+        print('Lower bound must be greater than 0')
         return get_domain()
 
     return domain

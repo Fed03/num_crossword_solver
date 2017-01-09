@@ -20,7 +20,7 @@ def run(args):
         print('The problem consists of:')
         print('- Scheme')
         print(board)
-        print('- Domains [{},{}]'.format(*problem_desc['domains']))
+        print('- Domain [{},{}]'.format(*problem_desc['domain']))
         print('- Definitions')
         print_definitions(problem_desc['definitions'])
 
@@ -37,7 +37,7 @@ def run(args):
         blocks = board_blocks(rows, cols)
 
         board = Scheme(rows, cols, blocks)
-        print('\nHere the board just created\n')
+        print('\nHere is the board just created\n')
         print(board)
 
         domain = get_domain()
@@ -66,7 +66,7 @@ def load_problem(file):
     problem_desc = json.load(open(file), object_hook=problem_decoder)
 
     board = Scheme(**problem_desc['board'])
-    problem = Problem(board, problem_desc['domains'])
+    problem = Problem(board, problem_desc['domain'])
 
     constraints = problem_desc['definitions']['horizontal'].copy()
     constraints.update(problem_desc['definitions']['vertical'])
