@@ -7,13 +7,15 @@ class Problem:
         self._scheme = scheme
         self._vars = NJ.Matrix(scheme.rows, scheme.cols, domain[0], domain[1])
         self._model = NJ.Model()
-        self.has_solution = None
+        self._solver = None
 
     def solve(self):
-        solver = self._model.load('Mistral')
-        self.has_solution = solver.solve()
+        self._solver = self._model.load('Mistral')
+        return self._solver.solve()
 
-        return self.has_solution
+    def is_satisfiable(self):
+        if self._solver:
+            return self._solver.is_sat()
 
     def set_constraints(self, constraints):
         words = self._scheme.horizontal_words()
